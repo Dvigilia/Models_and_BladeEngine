@@ -1,15 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookController;
 
-use Illuminate\Http\Request;
-use App\Models\Book;
+// Homepage Route (Optional)
+Route::get('/', function () {
+    return view('welcome');
+});
 
-class BookController extends Controller
-{
-    public function index()
-    {
-        $books = Book::all();
-        return view('books.index', compact('books'));
-    }
-}
+// Books Route
+Route::get('/books', [BookController::class, 'index'])->name('books.index');
